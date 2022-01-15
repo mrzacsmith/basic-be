@@ -3,12 +3,15 @@ const morgan = require('morgan')
 const cors = require('cors')
 const helmet = require('helmet')
 
+const booksRouter = require('./books/books-router')
+
 const server = express()
 
 // middlewares
 server.use(helmet())
 server.use(morgan('dev'))
 server.use(cors())
+server.use(express.json())
 
 server.get('/', (req, res) => {
   res.status(200).json({
@@ -17,6 +20,8 @@ server.get('/', (req, res) => {
     time: new Date().toLocaleTimeString(),
   })
 })
+
+server.use('/api/v1/books', booksRouter)
 
 server.use((err, req, res, next) => {
   console.log(err.message || 'broken')
