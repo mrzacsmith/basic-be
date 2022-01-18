@@ -18,6 +18,7 @@ const insert = (data) => {
   return db('books')
     .insert(data)
     .then((ids) => ({ id: ids[0] }))
+  // .then((ids) => findById(ids[0]))
 }
 
 const update = (id, book) => {}
