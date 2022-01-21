@@ -4,6 +4,7 @@ const cors = require('cors')
 const helmet = require('helmet')
 
 const booksRouter = require('./books/books-router')
+const usersRouter = require('./users/users-router')
 
 const server = express()
 
@@ -22,6 +23,7 @@ server.get('/', (req, res) => {
 })
 
 server.use('/api/v1/books', booksRouter)
+server.use('/api/v1/users', usersRouter)
 
 server.use((err, req, res, next) => {
   console.log(err.message || 'broken')
